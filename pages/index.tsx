@@ -1,86 +1,84 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
+import { Slider } from "@mantine/core";
+import React, { useState } from "react";
+import ZBox from "../components/ZBox";
+import ZBufferBox from "../components/ZBufferBox";
 
-const Home: NextPage = () => {
+const Home = () => {
+  const [hugeRectange, setHugeRectange] = useState<number>(0);
+  const [rectagle, setRectangle] = useState<number>(0);
+  const [circle, setCircle] = useState<number>(0);
+  const [verticalRectangle, setVerticalRectangle] = useState<number>(0);
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
-        </h1>
-
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="rounded-md bg-gray-100 p-3 font-mono text-lg">
-            pages/index.tsx
-          </code>
-        </p>
-
-        <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and its API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+    <div className=" relative w-screen h-screen flex flex-col items-center">
+      <p className=" text-sm ">Z-BUFFER IMPLEMENTATION -GROUP 4</p>
+      <div
+        className={`fixed top-[10%] box h-[50vh] w-[65vw] bg-green-500 `}
+        style={{ zIndex: hugeRectange }}
+      >
+        z1={hugeRectange}
+      </div>
+      <div
+        className=" fixed top-[20%] box h-[25vh] w-[80vw] bg-red-500 "
+        style={{ zIndex: rectagle }}
+      >
+        z2={rectagle}
+      </div>
+      <div
+        className=" fixed top-[50%] box h-[30vh] w-[30vh] bg-blue-500 rounded-[100%]  "
+        style={{ zIndex: circle }}
+      >
+        <p className=" absolute  text-sm top-[40%] ml-0"> z3={circle}</p>
+      </div>
+      <div
+        className=" fixed top-[5%] box h-[70vh] w-[15vw] bg-yellow-500 "
+        style={{ zIndex: verticalRectangle }}
+      >
+        z4={verticalRectangle}
+      </div>
+      <section className=" fixed bottom-0 flex gap-2 p-2 ">
+        <div className="input">
+          <span className=" flex justify-center text-lg font-bold">z1</span>
+          <input
+            type="range"
+            min={0}
+            max={100}
+            value={hugeRectange}
+            onChange={(e) => setHugeRectange(parseInt(e.target.value))}
+          />
         </div>
-      </main>
-
-      <footer className="flex h-24 w-full items-center justify-center border-t">
-        <a
-          className="flex items-center justify-center gap-2"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-        </a>
-      </footer>
+        <div className="input">
+          <span className=" flex justify-center text-lg font-bold">z2</span>
+          <input
+            type="range"
+            min={0}
+            max={100}
+            value={rectagle}
+            onChange={(e) => setRectangle(parseInt(e.target.value))}
+          />
+        </div>
+        <div className="input">
+          <span className=" flex justify-center text-lg font-bold">z3</span>
+          <input
+            type="range"
+            min={0}
+            max={100}
+            value={circle}
+            onChange={(e) => setCircle(parseInt(e.target.value))}
+          />
+        </div>
+        <div className="input">
+          <span className=" flex justify-center text-lg font-bold">z4</span>
+          <input
+            type="range"
+            min={0}
+            max={100}
+            value={verticalRectangle}
+            onChange={(e) => setVerticalRectangle(parseInt(e.target.value))}
+          />
+        </div>
+      </section>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
